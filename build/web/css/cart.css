@@ -1,0 +1,49 @@
+/* Apply Montserrat font to all elements */
+.cart-container, .cart-item, .cart-summary, .btn, .form-control {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cart-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cart-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 0;
+}
+
+.cart-item img {
+    width: 100px;
+}
+
+.cart-summary {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.btn.btn-success.btn-sm,
+.btn.btn-warning.btn-sm,
+.btn.btn-danger.btn-sm {
+    background-color: transparent; /* Remove background */
+    color: white; /* Change text color to white */
+    border: none; /* Remove border */
+}
+
+.btn.btn-warnin.btn-sm {
+    margin-right: 3px !important;
+}
+
+.form-control.text-center {
+    border-radius: 10px !important; /* Rounded corners */
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 10px; /* Add padding */
+    font-size: 1rem; /* Font size */
+    text-align: center; /* Center text */
+    transition: border-color 0.3s; /* Smooth border transition */
+    margin-left: 10px !important;
+}
+

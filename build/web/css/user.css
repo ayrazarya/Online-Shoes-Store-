@@ -1,0 +1,131 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Montserrat', sans-serif; /* Mengatur font Montserrat */
+}
+
+.profile-container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.profile-sidebar {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.profile-sidebar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 20px;
+}
+
+.info-section {
+    margin-top: 20px;
+}
+
+/* Center modal both horizontally and vertically */
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Keeps modal in place even when scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    margin-left: 550px;
+    padding: 0;
+    z-index: 1050; /* Ensure it appears above other content */
+}
+
+/* Modal content styling */
+.modal-content {
+    border-radius: 10px;
+    padding: 20px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Adjust the width as necessary */
+    max-width: 500px; /* Set a max width for the modal */
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Modal header styling */
+.modal-header {
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    text-align: center; /* Ensures content in the header is centered */
+    justify-content: center; /* This centers the title and close button together */
+}
+
+.modal-header {
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    align-items: center;
+}
+
+.modal-title {
+    margin-left: 160px;
+}
+
+.modal-header .close {
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Modal body styling */
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Input styling */
+.modal-body input[type="text"] {
+    border-radius: 5px;
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Button styling */
+.modal-body input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #333; /* Mengubah warna tombol */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-body input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.container-fluid profile-container {
+        font-family: 'Montserrat', sans-serif !important; /* Mengatur font Montserrat */
+    
+}
+
+btn btn-primary btn-block {
+        background-color: #333 !important; /* Mengubah warna tombol */
+}

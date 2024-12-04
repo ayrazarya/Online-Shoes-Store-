@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 20, 2024 2:26:11 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.model.pojo.Admin" table="admin" catalog="trendify" optimistic-lock="version">
+        <id name="adminId" type="java.lang.Integer">
+            <column name="admin_id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="statusAdmin" type="string">
+            <column name="status_admin" length="8" />
+        </property>
+        <set name="otpcodes" table="otpcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="admin_id" />
+            </key>
+            <one-to-many class="com.model.pojo.Otpcode" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+   .form-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ui-selectmanybutton .ui-button {
+            width: calc(100% / 3); /* 3 columns, adjust as needed */
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .upload-img-preview {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }

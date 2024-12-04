@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/addProduct.css"/>
+</h:head>
+
+<h:body>
+    <div class="container mt-5">
+        <h:form id="productForm" enctype="multipart/form-data">
+
+            <!-- General Information -->
+            <div class="form-section">
+                <div class="section-title">General Information</div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="brand">Brand</label>
+                        <h:inputText id="brand" value="#{productBean.brand.brandName}" class="form-control" />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="name">Name Product</label>
+                        <h:inputText id="name" value="#{productBean.itemName}" class="form-control" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="description">Description Product</label>
+                        <h:inputTextarea id="description" value="#{productBean.description}" class="form-control" rows="3" />
+                    </div>
+
+               
+                </div>
+            </div>
+
+            <!-- Pricing and Stock Section -->
+            <div class="form-section">
+                <div class="section-title">Pricing and Stock</div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="basePrice">Base Pricing</label>
+                        <h:inputText id="basePrice" value="#{productBean.price}" class="form-control" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="stock">Stock</label>
+                        <h:inputText id="stock" value="#{productBean.stocks}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Image Section -->
+            <div class="form-section">
+                <div class="section-title">Upload Image</div>
+                <div class="form-group">
+                    <!-- File Upload Component -->
+                    <p:fileUpload id="file" value="#{productBean.file}" mode="simple" />
+
+                    <!-- Image Preview Panel -->
+                    <h:panelGroup id="previewImg" rendered="#{not empty productBean.previewImg}">
+                        <img class="upload-img-preview" src="#{productBean.previewImg}" alt="Product Image" />
+                    </h:panelGroup>
+                </div>
+            </div>
+
+            <!-- Save and Add Product Button -->
+            <div class="form-section">
+                <p:commandButton value="Save and Add Product" icon="pi pi-plus" styleClass="btn btn-primary"
+                 action="#{productBean.saveAndAddProduct}" update="@form growl" />
+
+            </div>
+
+            <!-- Growl for messages -->
+            <p:growl id="growl" showDetail="true" life="5000" />
+
+        </h:form>
+    </div>
+</h:body>
+</html>

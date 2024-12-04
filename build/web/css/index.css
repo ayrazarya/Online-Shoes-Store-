@@ -1,0 +1,398 @@
+  /* Apply Montserrat font to the entire page */
+  body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom style for the header section */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Navbar custom style */
+.navbar-brand img {
+    width: 100px;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+/* Search bar styling */
+.search-bar-input {
+    border: 2px solid #333;
+    padding-right: 270px;
+    font-size: 16px;
+    width: 250px;
+    margin-right: -30px;
+    border-radius: 70px;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.search-bar-button {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 20px;
+    padding: 0;
+    margin-right: 40px;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.search-bar-button:hover {
+    color: #007bff;
+}
+
+/* Login and Cart button styling */
+.login-btn, .cart-btn {
+    background-color: transparent;
+    color: #333;
+    border: none;
+    padding: 16px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.login-btn:hover, .cart-btn:hover {
+    background-color: #333;
+    color: white;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark transparency for text */
+    color: white;
+    opacity: 1;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.card-body h5 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.card-body p {
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.card-body .discover-more {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 2px solid white;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.card:hover .card-body {
+    background-color: rgba(0, 0, 0, 0.6); /* Darker color on hover */
+}
+
+.card:hover .discover-more {
+    display: block; /* Show "Discover More" on hover */
+}
+
+.custom-btn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 14px; /* Smaller font size */
+    padding: 8px 16px; /* Smaller padding */
+    margin-left: 0; /* No left margin */
+    margin-top: 20px; /* Top margin */
+    align-self: flex-start; /* Ensure button is in top left */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.custom-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.discover-more {
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 2px solid white;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.card:hover .discover-more {
+    display: block; /* Show button on hover */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for discover more */
+.discover-more:hover {
+    background-color: white;
+    color: black; /* Change color on hover */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Flexbox style for equal height */
+.row {
+    display: flex;
+    align-items: stretch; /* Ensure all columns in a row are the same height */
+}
+
+.col-lg-6 {
+    display: flex;
+    flex-direction: column; /* Ensure column uses flexbox with column direction */
+    flex: 1; /* Fill available space */
+}
+
+.jumbotron {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: flex-start; /* Align content to the left horizontally */
+    background-size: cover;
+    background-position: center;
+    min-height: 95%; /* Set appropriate minimum height */
+    padding: 20px; /* Add padding for content */
+    text-align: left; /* Align text to the left */
+    position: relative; /* Provide context for button positioning */
+}
+
+.jumbotron h1, .jumbotron p {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content inside card */
+    align-items: center; /* Center content horizontally inside card */
+}
+
+.custom-carousel {
+width: 100%;
+max-width: 1000px; /* Set a maximum width for the carousel */
+margin: auto; /* Center the carousel */
+}
+
+
+.custom-carousel .ui-carousel .ui-carousel-item {
+width: 100%;
+max-width: 1000px; /* Limit the width of each carousel item */
+padding: 10px;
+margin: auto; /* Center the carousel item */
+}
+
+.product-card img {
+max-width: 100%; /* Ensure the image fits within the card */
+height: auto; /* Maintain the image's aspect ratio */
+object-fit: contain; /* Make sure the image does not get cropped */
+}
+
+.custom-carousel .ui-carousel .ui-carousel-item {
+flex: 1 0 35%; /* Adjusts each item to take 35% of the width */
+}
+
+.custom-carousel h3 {
+font-size: 15px;
+margin-top: 10px;
+font-family: 'Montserrat', sans-serif;
+}
+
+/* Styling untuk harga produk */
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #159953 !important; /* Warna oranye */
+}
+
+/* Styling untuk nama produk */
+.product-name {
+    font-size: 1.5em;
+             color: #333;
+    font-style: italic;
+}
+
+/* Styling untuk carousel */
+.carousel-item img {
+    width: 50%;
+    height: auto;
+}
+
+.product-card {
+position: relative;
+overflow: hidden;
+border: 1px solid #ddd;
+padding: 20px;
+background-color: white;
+transition: all 0.3s ease;
+}
+/* Hover effect: background semi-transparent black */
+.product-card:hover::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8); /* Dark transparent overlay */
+z-index: 1;
+transition: background-color 0.3s ease;
+}
+
+/* Icon overlay for Add to Cart and View Product */
+.icon-overlay {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: none;
+flex-direction: column;
+align-items: center;
+z-index: 2;
+color: white;
+text-align: center;
+text-decoration: none;
+}
+
+.product-card:hover .icon-overlay {
+display: flex;
+text-decoration: none;
+}
+
+.icon {
+font-size: 1.5em;
+margin-bottom: 8px;
+cursor: pointer;
+transition: transform 0.3s;
+text-decoration: none;
+text-decoration: none;
+}
+
+.icon:hover {
+transform: scale(1.1);
+pointer-events: none; /* Disable link on hover */
+text-decoration: none;
+}
+
+/* Button styles inside the icon overlay */
+.icon-overlay .button {
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: white;
+color: black;
+border: 1px solid black;
+padding: 8px 12px;
+border-radius: 5px;
+text-transform: uppercase;
+font-weight: bold;
+font-size: 20px;
+cursor: pointer;
+transition: background-color 0.3s, color 0.3s, transform 0.3s;
+text-decoration: none;
+}
+
+
+
+
+
+/* Styling for product price and name */
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #159953 !important; /* Warna oranye */
+}
+
+.product-name {
+font-size: 1.5em;
+color: #333;
+font-style: italic;
+margin-top: 10px;
+}
+
+
+.cart-count {
+background-color: red;
+color: white;
+border-radius: 50%;
+padding: 2px 6px;
+position: absolute;
+top: 0;
+right: 0;
+}
+
+.hidden {
+display: none;
+}
+
+.out-of-stock-overlay {
+position: absolute !important;
+top: 0 !important;
+left: 0 !important;
+width: 100% !important;
+height: 100% !important;
+background-color: rgba(255, 0, 0, 0.6) !important; /* Warna merah transparan */
+color: white !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+border-radius: 10px !important;
+font-size: 25px !important;
+z-index: 10 !important; /* Pastikan overlay di atas elemen lain */
+}
+
+.out-of-stock-text {
+font-weight: bold !important;
+text-transform: uppercase !important;
+color: white !important; /* Mengubah warna teks menjadi putih untuk kontras yang lebih baik */
+}
+
+
+
+
+
+
+

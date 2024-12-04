@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Product Details</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/viewProduct.css"/>
+    </h:head>
+    <h:body>
+        <ui:include src="header.xhtml" />
+
+        <div class="container mt-5">
+            <h:form id="productForm">
+                <!-- PrimeFaces growl to display notifications -->
+                <p:growl id="growl" globalOnly="true" life="4000" />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Product Image -->
+                        <h:graphicImage value="data:image/png;base64,#{viewProductBean.imageBase64}" 
+                                        class="img-fluid" 
+                                        alt="#{viewProductBean.selectedProduct.itemName}" 
+                                        rendered="#{viewProductBean.imageBase64 != null}" />
+                        <h:outputLabel value="Image not available." rendered="#{viewProductBean.imageBase64 == null}" />
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Product Name -->
+                        <h2>#{viewProductBean.selectedProduct.itemName}</h2>
+                        
+                        <h3>
+                            <h:outputText value="#{viewProductBean.selectedProduct.price}">
+                                <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                            </h:outputText>
+                        </h3>
+                        <h4>
+                            <h:outputText value="Stock: #{viewProductBean.selectedProduct.stocks}" />
+                        </h4>
+
+                        <!-- Add to Cart and Checkout -->
+                        <div class="mb-4">
+                            <p:commandButton 
+                                value="Add to Cart" 
+                                actionListener="#{viewProductBean.addItemToCart}" 
+                                styleClass="btn btn-dark mr-2" 
+                                icon="pi pi-check" 
+                                update="growl">
+                                <f:param name="itemId" value="#{viewProductBean.selectedProduct.itemId}" />
+                            </p:commandButton>
+
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Similar Products Section -->
+                <div class="row mt-5">
+                    <h3 class="col-12">Similar Products</h3>
+                    <ui:repeat value="#{viewProductBean.similarProducts}" var="product">
+                        <div class="col-md-3 mb-4">
+                            <!-- Link to Product -->
+                            <h:link outcome="viewProduct.xhtml" styleClass="product-link">
+                                <f:param name="itemId" value="#{product.itemId}" />
+                                <!-- Product Image -->
+                                <div class="product-image">
+                                    <h:graphicImage value="data:image/png;base64,#{product.imageBase64}" class="img-fluid" alt="#{product.itemName}" />
+                                </div>
+                                <!-- Product Name -->
+                                <div class="product-name mt-2">
+                                    <h:outputText value="#{product.itemName}" styleClass="d-block font-weight-bold" />
+                                </div>
+                                <!-- Product Price -->
+                                <div class="product-price">
+                                    <h:outputText value="#{product.price}">
+                                        <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                                    </h:outputText>
+                                </div>
+                            </h:link>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </h:form>
+        </div>
+        
+        <ui:include src="footer.xhtml" />
+
+        <!-- Include Bootstrap and FontAwesome JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </h:body>
+</html>

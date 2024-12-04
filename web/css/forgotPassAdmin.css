@@ -1,0 +1,46 @@
+ body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f8fa;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .forgot-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .forgot-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .forgot-desc {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .forgot-btn {
+            background-color: #333333 !important; /* Dark gray color */
+            color: white !important;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .forgot-btn:hover {
+            background-color: #444444 !important; /* Lighter gray on hover */
+        }

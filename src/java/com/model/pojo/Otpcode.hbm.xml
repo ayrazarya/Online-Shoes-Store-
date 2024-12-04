@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 20, 2024 2:26:11 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.model.pojo.Otpcode" table="otpcode" catalog="trendify" optimistic-lock="version">
+        <id name="otpId" type="java.lang.Integer">
+            <column name="otp_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="admin" class="com.model.pojo.Admin" fetch="select">
+            <column name="admin_id" />
+        </many-to-one>
+        <many-to-one name="user" class="com.model.pojo.User" fetch="select">
+            <column name="user_id" />
+        </many-to-one>
+        <property name="authCode" type="string">
+            <column name="authCode" length="6" not-null="true" />
+        </property>
+        <property name="expiryTime" type="timestamp">
+            <column name="expiry_time" length="19" not-null="true" />
+        </property>
+        <property name="isUsed" type="java.lang.Boolean">
+            <column name="is_used" />
+        </property>
+    </class>
+</hibernate-mapping>

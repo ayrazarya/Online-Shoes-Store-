@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.model.pojo.Item" table="item" catalog="trendify" optimistic-lock="version">
+        <id name="itemId" type="int">
+            <column name="item_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="brand" class="com.model.pojo.Brand" fetch="select">
+            <column name="brand_id" not-null="false" /> <!-- Allow NULL for brand_id -->
+        </many-to-one>
+        <property name="itemName" type="string">
+            <column name="item_name" length="100" not-null="true" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="10" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+     
+        <property name="image" type="binary">
+            <column name="image" />
+        </property>
+        <property name="stocks" type="int">
+            <column name="stocks" not-null="true" />
+        </property>
+     
+     
+        <set name="orderItemses" table="order_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item_id" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.OrderItems" />
+        </set>
+    </class>
+</hibernate-mapping>

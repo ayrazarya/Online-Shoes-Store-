@@ -1,0 +1,314 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>User Profile</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+     <link rel="stylesheet" href="css/user.css"/>
+</h:head>
+
+    
+
+
+<h:body>
+    
+          <ui:include src="header.xhtml" />
+    <div class="container-fluid profile-container">
+        <h:form id="profileForm" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profile-sidebar">
+                        <img src="path_to_image/profile.png" alt="Profile Picture" />
+                        <p:fileUpload label="Profile Picture" mode="basic" class="custom-file-upload" />
+           
+                     <p:commandButton value="Change Password" 
+                 styleClass="btn btn-primary btn-block " 
+                 action="#{userBean.redirectToForgotPassword}" />
+
+                           <p:commandButton value="Sign out" styleClass="btn btn-primary btn-block" action="#{userBean.logout}"  />
+                                   <p:commandButton value="Delete Account" styleClass="btn btn-primary btn-block" action="#{userBean.deleteAccount}"  />
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="profile-content">
+                        <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="biodata-tab" data-toggle="tab" href="#biodata" role="tab">User Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="notifikasi-tab" data-toggle="tab" href="#alamat" role="tab">Shipping</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="profileTabContent">
+                            <div class="tab-pane fade show active" id="biodata" role="tabpanel">
+                                <div class="info-section">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Username</label>
+                                        <div class="col-sm-6">
+                                            <h:outputText id="usernameOutput" value="#{facesContext.externalContext.sessionMap['username']}" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editUsernameModal">Ubah</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">First Name</label>
+                                        <div class="col-sm-6">
+                                            <h:outputText id="firstNameOutput" value="#{facesContext.externalContext.sessionMap['firstName']}" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editFirstNameModal">Ubah</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Last Name</label>
+                                        <div class="col-sm-6">
+                                            <h:outputText id="lastNameOutput" value="#{facesContext.externalContext.sessionMap['lastName']}" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editLastNameModal">Ubah</button>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                             <label class="col-sm-4 col-form-label">Email</label>
+                                             <div class="col-sm-6">
+                                                 <h:outputText id="emailOutput" value="#{facesContext.externalContext.sessionMap['email']}" />
+                                         </div>
+                                             <div class="col-sm-2">
+                                                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editEmailModal">Ubah</button>
+                                             </div>
+                                      </div>
+                                 <div class="info-section">
+                                          <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Address</label>
+                                        <div class="col-sm-6">
+                                            <h:outputText id="addressOutput" value="#{facesContext.externalContext.sessionMap['address']}" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editAddressModal">Ubah</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="info-section">
+                                          <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Payment</label>
+                                        <div class="col-sm-6">
+                                       <h:outputText id="paymentOutput" value="#{facesContext.externalContext.sessionMap['payment']}" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editPaymentModal">Ubah</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            
+                        <!-- Tab Alamat -->
+                        <div class="tab-pane fade" id="alamat" role="tabpanel">
+                            <div class="info-section">
+                                <h3>My Shipped Orders</h3>
+                                <!-- DataTable to display user's shipped Order Items -->
+                        <h:form id="userOrdersForm">
+                        <p:dataTable id="userOrdersTable" var="item" value="#{userManageBean.userOrderItemsList}" 
+                                     paginator="true" rows="10" emptyMessage="No orders found">
+
+                                    <!-- Display Order ID -->
+                                    <p:column headerText="Order ID">
+                                        <h:outputText value="#{item.orders.orderId}" />
+                                    </p:column>
+                                    <!-- Display Product Name -->
+                                    <p:column headerText="Product Name">
+                                        <h:outputText value="#{item.item.itemName}" />
+                                    </p:column>
+                                        <!-- Display Quantity -->
+                                   <p:column headerText="Quantity">
+                                        <h:outputText value="#{item.quantity}" />
+                                   </p:column>
+                                   <p:column headerText="Total Price">
+                                      <h:outputText value="#{item.getTotal()}" >
+                                          <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                                      </h:outputText>
+                                  </p:column>
+                                   <p:column headerText="Status">
+                                      <h:outputText value="#{item.orders.status}" >
+                                          <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                                      </h:outputText>
+                                  </p:column>
+                                      <!-- Action Button: Mark as 'Received' -->
+                                      <p:column headerText="Action">
+                                          <p:commandButton value="Mark as Received" 
+                                                           action="#{userManageBean.markAsReceived(item.orders.orderId)}"
+                                                           update="userOrdersTable"
+                                                           rendered="#{item.orders.status == 'Shipping'}" /> <!-- Render button only if status is 'Dikirim' -->
+                                      </p:column>
+                                  </p:dataTable>
+                                  </h:form>
+                            </div>
+                        </div>
+                        <!-- Modal Edit Username -->
+                        <div class="modal fade" id="editTagihanModal" tabindex="-1" role="dialog" aria-labelledby="editTagihanModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editTagihanModalLabel">Total Tagihan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h:form id="editTagihanForm">
+
+                                  <h:outputText rendered="#{empty checkoutBean.totalAmount}" style="font-size: 1.2rem; font-weight: bold; color: #333; margin: 10px 0;">
+                                    <f:convertNumber currencySymbol="Rp" type="currency" locale="id_ID" />
+                                </h:outputText>
+                                            <h:commandButton value="Simpan" action="#{userBean.saveUsername}">
+
+                                            </h:commandButton>
+                                        </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        </div>
+                               </div>
+                        </div>
+                 </div>
+                        <!-- Growl untuk notifikasi -->
+                   <p:growl id="growl" showDetail="true" />
+          </h:form>
+  </div>
+
+            <!-- Modal Edit Username -->
+            <div class="modal fade" id="editUsernameModal" tabindex="-1" role="dialog" aria-labelledby="editUsernameModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editUsernameModalLabel">Ubah Username</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="editUsernameForm">
+                                <h:inputText value="#{userBean.username}" id="editUsernameInput" />
+                                <h:commandButton value="Simpan" action="#{userBean.saveUsername}">
+                                    <p:ajax update=":profileForm:usernameOutput :profileForm:growl" />
+                                </h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Edit First Name -->
+            <div class="modal fade" id="editFirstNameModal" tabindex="-1" role="dialog" aria-labelledby="editFirstNameModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editFirstNameModalLabel">Ubah First Name</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="editFirstNameForm">
+                                <h:inputText value="#{userBean.firstName}" id="editFirstNameInput" />
+                                <h:commandButton value="Simpan" action="#{userBean.saveFirstName}">
+                                    <p:ajax update=":profileForm:firstNameOutput :profileForm:growl" />
+                                </h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Edit Last Name -->
+            <div class="modal fade" id="editLastNameModal" tabindex="-1" role="dialog" aria-labelledby="editLastNameModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editLastNameModalLabel">Ubah Last Name</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="editLastNameForm">
+                                <h:inputText value="#{userBean.lastName}" id="editLastNameInput" />
+                                <h:commandButton value="Simpan" action="#{userBean.saveLastName}">
+                                    <p:ajax update=":profileForm:lastNameOutput :profileForm:growl" />
+                                </h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Edit Address -->
+            <div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editAddressModalLabel">Ubah Alamat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="editAddressForm">
+                                <h:inputText value="#{userBean. address}" id="editAddressInput" />
+                                <h:commandButton value="Simpan" action="#{userBean.saveAddress}">
+                                    <p:ajax update=":profileForm:addressOutput :profileForm:growl" />
+                                </h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Edit Email -->
+            <div class="modal fade" id="editEmailModal" tabindex="-1" role="dialog" aria-labelledby="editEmailModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editEmailModalLabel">Ubah Email</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="editEmailForm">
+                                <h:inputText value="#{userBean.email}" id="editEmailInput" />
+                                <h:commandButton value="Simpan" action="#{userBean.saveEmail}">
+                                    <p:ajax update=":profileForm:emailOutput :profileForm:growl" />
+                                </h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal Edit Email -->
+            <div class="modal fade" id="editPaymentModal" tabindex="-1" role="dialog" aria-labelledby="editPaymentModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editeditPaymentModalLabel">Ubah Payment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#215;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="editPaymentForm">
+                                <h:inputText value="#{userBean.paymentMethod}" id="editPaymentInput" />
+                                <h:commandButton value="Simpan" action="#{userBean.savePayment}">
+                                    <p:ajax update=":profileForm:paymentOutput :profileForm:growl" />
+                                </h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+         <ui:include src="footer.xhtml" />
+
+<!-- Tambahkan script jQuery dan Bootstrap untuk mengaktifkan modal -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</h:body>
+</html>

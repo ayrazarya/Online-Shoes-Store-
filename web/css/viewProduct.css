@@ -1,0 +1,114 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    margin-top:40px;
+}
+
+h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 40px;
+}
+
+h3 {
+    font-weight: bold !important;
+    color: #159953 !important;
+}
+
+h4 {
+    font-weight: bold !important;
+    font-size: 18px;
+}
+
+.btn-dark, .btn-outline-dark {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 50px;
+    background-color:  #198754 !important;
+}
+
+.btn-dark {
+    background-color:  #198754 !important;
+    border-color: #198754 !important;
+}
+
+.btn-outline-dark:hover {
+    background-color: #198754 !important;
+    color: #ffffff;
+}
+
+.img-fluid {
+    max-height: 200px;
+    width: auto;
+    align-items: center;
+}
+
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    position: relative; /* Untuk absolute positioning overlay */
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    max-height: 120px;
+    object-fit: cover;
+}
+
+.product-card img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.product-link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-name {
+    font-size: 17px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #159953 !important;
+    font-weight: bold;
+    margin-top: 14px;
+}
+
+.product-image img {
+    width: 60%;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Warna merah transparan untuk produk yang stoknya habis */
+.out-of-stock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px; /* Membuat overlay melengkung */
+}
+
+.out-of-stock-text {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}

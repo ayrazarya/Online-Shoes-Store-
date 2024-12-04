@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Admin - Order Items List</title>
+</h:head>
+<h:body>
+    <h:form id="orderItemsForm">
+        <h1>Order Items List</h1>
+
+        <!-- DataTable to display Order Items -->
+        <p:dataTable id="orderItemsTable" var="item" value="#{adminBean.orderItemsList}" 
+                     paginator="true" rows="10" emptyMessage="No order items found">
+            
+            <!-- Display Order ID -->
+            <p:column headerText="Order ID">
+                <h:outputText value="#{item.orders.orderId}" />
+            </p:column>
+
+            <!-- Display User Full Name (First Name + Last Name) -->
+            <p:column headerText="Customer Name">
+                <h:outputText value="#{item.orders.user.firstName} #{item.orders.user.lastName}" />
+            </p:column>
+            
+            
+                 <p:column headerText="Address Name">
+                <h:outputText value="#{item.orders.user.address}" />
+            </p:column>
+
+            <!-- Display Product Name -->
+            <p:column headerText="Product Name">
+                <h:outputText value="#{item.item.itemName}" />
+            </p:column>
+
+            <!-- Display Quantity -->
+            <p:column headerText="Quantity">
+                <h:outputText value="#{item.quantity}" />
+            </p:column>
+
+            
+            <!-- Display Total Price -->
+                <p:column headerText="Total Price">
+    <h:outputText value="#{item.getTotal()}" >
+        <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+    </h:outputText>
+</p:column>
+
+
+            <!-- Send Button to Change Status to 'Dikirim' -->
+            <p:column headerText="Action">
+                <p:commandButton value="Send" action="#{adminBean.markAsShipped(item.orders.orderId)}" update="orderItemsTable" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

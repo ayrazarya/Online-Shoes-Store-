@@ -1,0 +1,9 @@
+        body, h2, h4, label, input, textarea, .btn, .cart-summary, .form-control {
+            font-family: 'Montserrat', sans-serif; /* Apply Montserrat to all text elements */
+            color: #333333; /* Set default color to #333 */
+        }
+
+        .btn {
+    
+            color: white; /* Button text color white */
+        }

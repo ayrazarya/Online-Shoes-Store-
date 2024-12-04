@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 20, 2024 2:26:11 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.model.pojo.Orders" table="orders" catalog="trendify" optimistic-lock="version">
+        <id name="orderId" type="int">
+            <column name="order_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="com.model.pojo.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="orderDate" type="timestamp">
+            <column name="order_date" length="19" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="total" precision="10" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="9" />
+        </property>
+        <set name="orderItemses" table="order_items" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="order_id" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.OrderItems" />
+        </set>
+ 
+    </class>
+</hibernate-mapping>

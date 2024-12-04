@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Checkout</title>
+    
+  
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+     <link rel="stylesheet" href="css/checkout.css"/>
+</h:head>
+
+<h:body>
+    
+    
+      <ui:include src="header.xhtml" />
+
+<div class="container mt-5">
+    <h:form id="checkoutForm">
+        <div class="row">
+            <!-- Kolom untuk User Information -->
+            <div class="col-md-8">
+               
+
+                <!-- Informasi Pelanggan -->
+                <div class="mb-4">
+                  
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <h:inputText id="username" 
+                                     value="#{facesContext.externalContext.sessionMap['username']}" 
+                                     required="true" class="form-control" readonly="true" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <h:inputText id="firstName" 
+                                     value="#{facesContext.externalContext.sessionMap['firstName']}" 
+                                     required="true" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <h:inputText id="lastName" 
+                                     value="#{facesContext.externalContext.sessionMap['lastName']}" 
+                                     required="true" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <h:inputText id="email" 
+                                     value="#{facesContext.externalContext.sessionMap['email']}" 
+                                     required="true" class="form-control" />
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <label for="address">Payment Method</label>
+                        <h:inputTextarea id="Payment" 
+                                         value="#{facesContext.externalContext.sessionMap['payment']}" 
+                                         required="true" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <h:inputTextarea id="address" 
+                                         value="#{facesContext.externalContext.sessionMap['address']}" 
+                                         required="true" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom untuk Order Summary -->
+            <div class="col-md-4">
+                <h4>Order Summary</h4>
+
+                <div class="cart-summary mb-4">
+                    <ui:repeat value="#{checkoutBean.orderItemsList}" var="orderItem">
+                        <div class="mb-2">
+                            <strong>#{orderItem.item.itemName}</strong> x #{orderItem.quantity}
+                            <span class="float-end">
+                                <h:outputText value="#{orderItem.price}">
+                                    <f:convertNumber currencySymbol="Rp" type="currency" locale="id_ID" />
+                                </h:outputText>
+                            </span>
+                        </div>
+                    </ui:repeat>
+
+                    <hr />
+
+                    <!-- Total -->
+                    <div class="d-flex justify-content-between">
+                        <span>Total</span>
+                        <h:outputText value="#{checkoutBean.calculateTotal()}">
+                            <f:convertNumber currencySymbol="Rp" type="currency" locale="id_ID" />
+                        </h:outputText>
+                    </div>
+                </div>
+
+                <!-- Checkout Confirmation Button -->
+                <h:commandButton value="Checkout Confirmation" 
+                                 action="#{checkoutBean.completeOrder}" 
+                                 class="btn btn-success btn-lg w-100 mt-3" />
+            </div>
+        </div>
+    </h:form>
+</div>
+
+
+    
+          <ui:include src="footer.xhtml" />
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</h:body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 20, 2024 2:26:11 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.model.pojo.User" table="user" catalog="trendify" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" length="50" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="50" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" />
+        </property>
+        <property name="paymentMethod" type="string">
+            <column name="payment_method" length="20" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="8" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.model.pojo.Orders" />
+        </set>
+        <set name="otpcodes" table="otpcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.model.pojo.Otpcode" />
+        </set>
+    </class>
+</hibernate-mapping>

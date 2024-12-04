@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Belanjain</title>
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+        <!-- PrimeIcons CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/4.1.0/primeicons.css" />
+        <!-- Google Fonts Montserrat -->
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+       <link rel="stylesheet" href="css/index.css"/>
+    </h:head>
+
+    <h:body>
+        
+        <f:metadata>
+    <f:viewAction action="#{productBean.loadNikeProducts}" />
+    <f:viewAction action="#{productBean.loadAdidasProducts}" />
+        <f:viewAction action="#{productBean. loadPumaProducts}" />
+           <f:viewAction action="#{productBean. loadOnitsukaProducts}" />
+</f:metadata>
+        
+        <!-- Header Section -->
+       
+      <ui:include src="header.xhtml" />
+
+        <!-- Content Section -->
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Main banner -->
+                <div class="col-lg-6 d-flex align-items-stretch">
+                    <div class="jumbotron text-white" style="background-image: url('resources/Test2.jpg');">
+                        <h1 class="display-4">Trendify</h1>
+                        <p class="lead">Your Style, Your Statement!</p>
+                        <hr class="my-4"/>
+  
+                    </div>
+                </div>
+                <!-- Category Items -->
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <img class="card-img-top" src="resources/Adidas.png" alt="Sneakers Category"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Adidas</h5>
+                                    <p class="card-text">Best Adidas Deals</p>
+                                    <h:link value="Discover More" outcome="adidas" styleClass="discover-more"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <img class="card-img-top" src="resources/Nike.jpeg" alt="Apparels Category"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Nike</h5>
+                                    <p class="card-text">Best Nike Deals</p>
+                                    <h:link value="Discover More" outcome="nike" styleClass="discover-more"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <img class="card-img-top" src="resources/Puma.png" alt="Slides Category"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Puma</h5>
+                                    <p class="card-text">Best Slides Deals</p>
+                                    <h:link value="Discover More" outcome="puma" styleClass="discover-more"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <img class="card-img-top" src="resources/Onitsuka.png" alt="Luxury Category"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Onitsuka</h5>
+                                    <p class="card-text">Best Slides Deals</p>
+                                    <h:link value="Discover More" outcome="onitsuka" styleClass="discover-more"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="container mt-5">
+    <h2 class="text-center">Adidas</h2>
+
+    <h:form>
+        <p:carousel value="#{productBean.sneakerProductsAdidas}" var="product" numVisible="4" circular="true" autoplayInterval="4000" styleClass="custom-carousel">
+            <p:panel styleClass="product-card" style="position: relative;">
+                <!-- Product Image -->
+                <h:graphicImage value="data:image/png;base64,#{product.imageBase64}" alt="#{product.itemName}" />
+
+                <!-- Check stock and display appropriate content -->
+                <h:panelGroup layout="block">
+                    <!-- If stock > 0, show Add to Cart and View buttons -->
+                    <h:panelGroup rendered="#{not productBean.isOutOfStock(product)}">
+                        <div class="icon-overlay">
+                            <!-- Add to Cart Button -->
+                            <p:commandButton 
+                                action="#{cartBean.addItemToCart(product)}" 
+                                icon="fas fa-shopping-cart" 
+                                ajax="false" 
+                                style="background-color:white; border:none; color:black; padding-right:46px;"
+                            />
+                            <!-- View Product Button -->
+                            <div class="button" onclick="navigateToProduct(#{product.itemId})">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- If stock is 0 or less, show Out of Stock message -->
+                    <h:panelGroup rendered="#{productBean.isOutOfStock(product)}">
+    <div class="out-of-stock-overlay">
+        <span class="out-of-stock-text">Out of Stock</span>
+    </div>
+</h:panelGroup>
+                </h:panelGroup>
+
+                <!-- Product Name -->
+                <h3 class="product-name">#{product.itemName}</h3>
+
+                <!-- Product Details -->
+                <div class="text-center mt-3">
+                    <!-- Product Price -->
+                    <h4 class="product-price">
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                        </h:outputText>
+                    </h4>
+                </div>
+            </p:panel>
+        </p:carousel>
+    </h:form>
+</div>
+
+
+<!-- Carousel Section -->
+<div class="container mt-5">
+    <h2 class="text-center">Nike</h2>
+
+    <h:form>
+        <p:carousel value="#{productBean.sneakerProductsNike}" var="product" numVisible="4" circular="true" autoplayInterval="4000" styleClass="custom-carousel">
+            <p:panel styleClass="product-card">
+                <!-- Product Image -->
+                <h:graphicImage value="data:image/png;base64,#{product.imageBase64}" alt="#{product.itemName}" />
+
+                <!-- If product is out of stock, show overlay -->
+       <h:panelGroup rendered="#{productBean.isOutOfStock(product)}">
+    <div class="out-of-stock-overlay">
+        <span class="out-of-stock-text">Out of Stock</span>
+    </div>
+</h:panelGroup>
+
+
+                <!-- If stock is available, show Add to Cart and View buttons -->
+                <h:panelGroup rendered="#{!productBean.isOutOfStock(product)}">
+                    <div class="icon-overlay">
+                        <!-- Add to Cart Button -->
+                        <p:commandButton 
+                            action="#{cartBean.addItemToCart(product)}" 
+                            icon="fas fa-shopping-cart" 
+                            ajax="false" 
+                            style="background-color:white; border:none; color:black; padding-right:46px;"
+                        />
+                        <!-- View Product Button -->
+                        <div class="button" onclick="navigateToProduct(#{product.itemId})">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </h:panelGroup>
+
+                <!-- Product Name -->
+                <h3 class="product-name">#{product.itemName}</h3>
+
+                <!-- Product Price -->
+                <div class="text-center mt-3">
+                    <h4 class="product-price">
+                        
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                        </h:outputText>
+                    </h4>
+                </div>
+            </p:panel>
+        </p:carousel>
+    </h:form>
+</div>
+
+<!-- Carousel Section -->
+<div class="container mt-5">
+    <h2 class="text-center">Puma</h2>
+
+    <h:form>
+        <p:carousel value="#{productBean.sneakerProductsPuma}" var="product" numVisible="4" circular="true" autoplayInterval="4000" styleClass="custom-carousel">
+            <p:panel styleClass="product-card">
+                <!-- Product Image -->
+                <h:graphicImage value="data:image/png;base64,#{product.imageBase64}" alt="#{product.itemName}" />
+
+                <!-- If product is out of stock, show overlay -->
+                <h:panelGroup rendered="#{productBean.isOutOfStock(product)}">
+                    <div class="out-of-stock-overlay">
+                        <span class="out-of-stock-text">Out of Stock</span>
+                    </div>
+                </h:panelGroup>
+
+                <!-- If stock is available, show Add to Cart and View buttons -->
+                <h:panelGroup rendered="#{!productBean.isOutOfStock(product)}">
+                    <div class="icon-overlay">
+                        <!-- Add to Cart Button -->
+                        <p:commandButton 
+                            action="#{cartBean.addItemToCart(product)}" 
+                            icon="fas fa-shopping-cart" 
+                            ajax="false" 
+                            style="background-color:white; border:none; color:black; padding-right:46px;"
+                        />
+                        <!-- View Product Button -->
+                        <div class="button" onclick="navigateToProduct(#{product.itemId})">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </h:panelGroup>
+
+                <!-- Product Name -->
+                <h3 class="product-name">#{product.itemName}</h3>
+
+                <!-- Product Price -->
+                <div class="text-center mt-3">
+                    <h4 class="product-price">
+                        
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                        </h:outputText>
+                    </h4>
+                </div>
+            </p:panel>
+        </p:carousel>
+    </h:form>
+</div>
+
+<!-- Carousel Section -->
+<div class="container mt-5">
+    <h2 class="text-center">Onitsuka</h2>
+
+    <h:form>
+        <p:carousel value="#{productBean.sneakerProductsOnitsuka}" var="product" numVisible="4" circular="true" autoplayInterval="4000" styleClass="custom-carousel">
+            <p:panel styleClass="product-card">
+                <!-- Product Image -->
+                <h:graphicImage value="data:image/png;base64,#{product.imageBase64}" alt="#{product.itemName}" />
+
+                <!-- If product is out of stock, show overlay -->
+                <h:panelGroup rendered="#{productBean.isOutOfStock(product)}">
+                    <div class="out-of-stock-overlay">
+                        <span class="out-of-stock-text">Out of Stock</span>
+                    </div>
+                </h:panelGroup>
+
+                <!-- If stock is available, show Add to Cart and View buttons -->
+                <h:panelGroup rendered="#{!productBean.isOutOfStock(product)}">
+                    <div class="icon-overlay">
+                        <!-- Add to Cart Button -->
+                        <p:commandButton 
+                            action="#{cartBean.addItemToCart(product)}" 
+                            icon="fas fa-shopping-cart" 
+                            ajax="false" 
+                            style="background-color:white; border:none; color:black; padding-right:46px;"
+                        />
+                        <!-- View Product Button -->
+                        <div class="button" onclick="navigateToProduct(#{product.itemId})">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </h:panelGroup>
+
+                <!-- Product Name -->
+                <h3 class="product-name">#{product.itemName}</h3>
+
+                <!-- Product Price -->
+                <div class="text-center mt-3">
+                    <h4 class="product-price">
+                        
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                        </h:outputText>
+                    </h4>
+                </div>
+            </p:panel>
+        </p:carousel>
+    </h:form>
+</div>
+
+
+      <ui:include src="footer.xhtml" />
+
+
+<script>
+function navigateToProduct(itemId) {
+    console.log("Navigating to product with itemId: " + itemId);
+    window.location.href = 'viewProduct.xhtml?itemId=' + itemId;
+}
+
+
+   function redirectToCart() {
+        // Ambil userId dari session
+        var userId = "#{sessionScope.userId}";
+        
+        // Periksa apakah userId valid sebelum mengarahkan
+        if (userId) {
+            window.location.href = 'cart.xhtml?user=' + encodeURIComponent(userId);
+        } else {
+            alert("User ID tidak valid!");
+        }
+    }
+</script>
+
+
+
+    </h:body>
+    
+
+    <!-- Bootstrap JS and PrimeFaces scripts -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</html>

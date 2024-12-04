@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Onitsuka Products</title>
+         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="css/productPage.css"/>
+    </h:head>
+    <h:body>
+    <ui:include src="header.xhtml" />
+
+        <h2>Puma Products</h2>
+
+        <f:metadata>
+            <f:viewAction action="#{productBean.loadPumaProducts}" />
+        </f:metadata>
+
+        <!-- Display Adidas Products in Grid -->
+        <h:form id="adidasProducts">
+            <div class="product-grid">
+                <ui:repeat value="#{productBean.sneakerProductsPuma}" var="product">
+                    <div class="product-card">
+                        <h:graphicImage value="data:image/png;base64,#{product.imageBase64}" alt="#{product.itemName}" class="product-image" />
+                        <h3>#{product.itemName}</h3>
+                        <h:outputText value="#{product.price}" styleClass="price">
+                            <f:convertNumber type="currency" currencySymbol="Rp" locale="id_ID" />
+                        </h:outputText>
+                        <p>#{product.description}</p>
+                        <p>Stocks: #{product.stocks}</p>
+
+                        <!-- Icon overlay that shows on hover -->
+                        <div class="icon-overlay">
+                            <h:panelGroup rendered="#{productBean.isOutOfStock(product)}">
+                                <div class="out-of-stock-overlay">Out of Stock</div>
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{!productBean.isOutOfStock(product)}">
+                                <p:commandButton 
+                                    action="#{cartBean.addItemToCart(product)}" 
+                                    icon="fas fa-shopping-cart" 
+                                    ajax="false" 
+                                    style="background-color:white; border:none; color:black; padding-right:46px;"
+                                />
+                                <div class="button" onclick="navigateToProduct(#{product.itemId})">
+                                    <i class="fas fa-eye"></i> <!-- Eye Icon -->
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </h:form>
+   <ui:include src="footer.xhtml" />
+        <script>
+            function navigateToProduct(itemId) {
+                console.log("Navigating to product with itemId: " + itemId);
+                window.location.href = 'viewProduct.xhtml?itemId=' + itemId;
+            }
+        </script>
+
+    </h:body>
+</html>
+

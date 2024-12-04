@@ -1,0 +1,130 @@
+  /* Apply Montserrat Font to entire body */
+            body {
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            /* Custom Styling */
+            .signup-panel {
+                width: 400px;
+                margin: 100px auto;
+                padding: 30px;
+                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .signup-panel h2 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .form-control {
+                border-radius: 0.25rem;
+                height: calc(1.5em + 0.75rem + 2px);
+                font-size: 16px;
+                padding: 10px;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .btn-primary {
+                background-color: #333333 !important; /* Warna abu-abu gelap */
+                color: white !important; /* Teks berwarna putih */
+                border: none !important;
+                width: 100%;
+                font-size: 16px;
+                padding: 12px;
+                border-radius: 0.25rem !important;
+                margin-bottom: 15px !important;
+                box-shadow: none !important;
+                font-family: 'Montserrat', sans-serif !important;
+                text-align: center !important;
+            }
+
+            .btn-primary:hover {
+                background-color: #444444 !important; /* Warna lebih terang saat hover */
+                color: white !important;
+            }
+
+            .social-button {
+                width: 100%;
+                font-size: 16px;
+                padding: 12px;
+                margin-bottom: 10px;
+                border-radius: 0.25rem;
+                font-weight: 500;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .btn-facebook {
+                background-color: #3b5998;
+                color: white;
+            }
+
+            .btn-google {
+                background-color: #db4437;
+                color: white;
+            }
+
+            .login-link {
+                text-align: center;
+                margin-top: 15px;
+                font-size: 14px;
+            }
+
+            .login-link a {
+                color: #007bff;
+                text-decoration: none;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .divider {
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .divider hr {
+                margin: 0;
+            }
+
+            .divider span {
+                display: inline-block;
+                position: relative;
+                top: -11px;
+                padding: 0 10px;
+                background-color: #fff;
+                font-size: 14px;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            /* Custom Modal Styling */
+            .ui-dialog {
+                width: 300px; /* Adjust width for small modal */
+                max-width: 100%; /* Ensure modal doesn't exceed viewport width */
+                margin: 0 auto; /* Center the modal horizontally */
+                position: absolute; /* Position absolute to use top and left */
+                top: 50%; /* Center vertically */
+                left: 50%; /* Center horizontally */
+                transform: translate(-50%, -50%); /* Adjust position to truly center */
+                padding: 20px; /* Add padding for content */
+                text-align: center; /* Center text inside modal */
+            }
+
+            .ui-dialog .ui-dialog-titlebar {
+                background: #0056b3;
+                color: #fff;
+                border: none; /* Remove border */
+                padding: 10px; /* Add padding */
+            }
+
+            .ui-dialog .ui-dialog-content {
+                padding: 20px;
+                text-align: center; /* Center text inside modal */
+            }
+            
+            #messages {
+                display: none;
+            }
